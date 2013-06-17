@@ -1,7 +1,7 @@
 (function() {
   (function($) {
     var natively_supported;
-    natively_supported = document.createElement('input').placeholder != null;
+    natively_supported = 'placeholder' in document.createElement('input');
     $.fn.placeholder = function(user_options) {
       var cnt, log, options, set_place_holder;
       options = $.extend({

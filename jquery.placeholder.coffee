@@ -1,6 +1,6 @@
 (($) ->
   natively_supported =
-  document.createElement('input').placeholder?
+  'placeholder' of document.createElement 'input'
 
   $.fn.placeholder = (user_options) ->
     options = $.extend
