@@ -1,6 +1,7 @@
 (($) ->
   natively_supported =
-  'placeholder' of document.createElement 'input'
+  ('placeholder' of document.createElement 'input') &&
+  ('placeholder' of document.createElement 'textarea')
 
   $.fn.placeholder = (user_options) ->
     options = $.extend
@@ -27,8 +28,8 @@
           if options.focus_color then options.focus_color else ""
       else
         # 空っぽならplaceholderを入れる
-        log "setting."
         if el.val().length == 0
+          log "setting."
           el.val(el.data("placeholder_str"))
           el.css("color", options.blur_color) if options.blur_color
 
@@ -51,7 +52,9 @@
       type = el.attr("type")
       log "tagname: "+tagname
       log "type: "+type
-      unless (tagname.toLowerCase() == "input" && type.toLowerCase() == "text")
+      unless (tagname.toLowerCase() == "input" && \
+      type.toLowerCase() == "text") || \
+      (tagname.toLowerCase() == "textarea")
         log "Element not applicable. Ignore it."
         return
 
@@ -110,7 +113,7 @@
   $.extend
     placeholder: (user_options) ->
       options = $.extend
-        selector: "input[type='text']"
+        selector: "input[type='text'], textarea"
         debug: false
       , user_options
       

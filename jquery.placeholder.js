@@ -1,7 +1,7 @@
 (function() {
   (function($) {
     var natively_supported;
-    natively_supported = 'placeholder' in document.createElement('input');
+    natively_supported = ('placeholder' in document.createElement('input')) && ('placeholder' in document.createElement('textarea'));
     $.fn.placeholder = function(user_options) {
       var cnt, log, options, set_place_holder;
       options = $.extend({
@@ -27,8 +27,8 @@
           }
           el.css("color", options.focus_color ? options.focus_color : "");
         } else {
-          log("setting.");
           if (el.val().length === 0) {
+            log("setting.");
             el.val(el.data("placeholder_str"));
             if (options.blur_color) {
               el.css("color", options.blur_color);
@@ -49,7 +49,7 @@
         type = el.attr("type");
         log("tagname: " + tagname);
         log("type: " + type);
-        if (!(tagname.toLowerCase() === "input" && type.toLowerCase() === "text")) {
+        if (!((tagname.toLowerCase() === "input" && type.toLowerCase() === "text") || (tagname.toLowerCase() === "textarea"))) {
           log("Element not applicable. Ignore it.");
           return;
         }
@@ -99,7 +99,7 @@
       placeholder: function(user_options) {
         var log, options;
         options = $.extend({
-          selector: "input[type='text']",
+          selector: "input[type='text'], textarea",
           debug: false
         }, user_options);
         log = function(message) {
