@@ -20,7 +20,7 @@ jQuery … 新しめのAPIは使っていないので古いバージョンでも
 非対応ブラウザでもhtml5のplaceholder属性を使用してplaceholderを実現す
 るショートカットメソッドです。
 
-デフォルトでは全ての"input[type='text']"要素に対して操作を行います。
+デフォルトでは全ての"input[type='text']"及びtextarea要素に対して操作を行います。
 
 ブラウザがplaceholder属性に対応している場合は何も行いません。
 
@@ -53,7 +53,7 @@ $.placeholderはobjectを引数に渡すことでオプション設定ができ�
 
 対象とする要素を選択するためのセレクタ文字列。
 
-デフォルトは`"input[type='text']"`。
+デフォルトは`"input[type='text'], textarea"`。
 
 #### debug
 
@@ -73,7 +73,7 @@ $.placeholderよりも細かい制御を行いたい方はこちらを利用し�
 
 指定された要素に対して、
 
-1. `input[type="text"]`でなければ終了。
+1. `input[type="text"]`或いは`textarea`でなければ終了。
 2. placeholderとして使用する文字列を決定。決定できない場合はそこで終了。
 3. placeholderに対応しているブラウザの場合、placeholder属性に値を設定
    して終了。
